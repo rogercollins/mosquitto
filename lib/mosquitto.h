@@ -89,11 +89,11 @@ enum mosq_err_t {
 	MOSQ_ERR_LOOKUP = 20,
 };
 
-/* Error values */
 enum mosq_opt_t {
 	MOSQ_OPT_PROTOCOL_VERSION = 1,
 	MOSQ_OPT_SSL_CTX = 2,
 	MOSQ_OPT_SSL_CTX_WITH_DEFAULTS = 3,
+	MOSQ_OPT_MAX_CONNECTS = 4,
 };
 
 /* MQTT specification restricts client ids to a maximum of 23 characters */

@@ -267,6 +267,9 @@ int mosquitto_opts_set(struct mosquitto *mosq, enum mosq_opt_t option, void *val
 				return MOSQ_ERR_INVAL;
 			}
 			break;
+		case MOSQ_OPT_MAX_CONNECTS:
+		    mosq->max_connects = *(int *)value;
+		    break;
 		case MOSQ_OPT_SSL_CTX:
 #ifdef WITH_TLS
 			mosq->ssl_ctx = (SSL_CTX *)value;

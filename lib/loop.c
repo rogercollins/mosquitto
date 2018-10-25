@@ -265,6 +265,10 @@ int mosquitto_loop_forever(struct mosquitto *mosq, int timeout, int max_packets)
 					reconnects++;
 				}
 
+				if (mosq->max_connects != 0 && reconnects >= mosq->max_connects) {
+				    return MOSQ_ERR_CONN_LOST;
+				}
+
 #ifdef WIN32
 				Sleep(reconnect_delay*1000);
 #else

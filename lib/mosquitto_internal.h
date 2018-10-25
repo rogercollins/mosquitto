@@ -162,6 +162,7 @@ struct mosquitto {
 	struct gaicb *adns; /* For getaddrinfo_a */
 #endif
 	enum mosquitto__protocol protocol;
+	int max_connects;
 	char *address;
 	char *id;
 	char *username;

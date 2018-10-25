@@ -442,7 +442,15 @@ int client_config_line_proc(struct mosq_config *cfg, int pub_or_sub, int argc, c
 				}
 				i++;
 			}
-		}else if(!strcmp(argv[i], "-W")){
+		}else if(!strcmp(argv[i], "-x")){
+            if(i==argc-1){
+                fprintf(stderr, "Error: -x argument given but no count specified.\n\n");
+                return 1;
+            }else{
+                cfg->max_connects = atoi(argv[i+1]);
+            }
+            i++;
+        }else if(!strcmp(argv[i], "-W")){
 			if(pub_or_sub == CLIENT_PUB){
 				goto unknown_option;
 			}else{
@@ -936,6 +944,7 @@ int client_opts_set(struct mosquitto *mosq, struct mosq_config *cfg)
 	}
 #endif
 	mosquitto_opts_set(mosq, MOSQ_OPT_PROTOCOL_VERSION, &(cfg->protocol_version));
+    mosquitto_opts_set(mosq, MOSQ_OPT_MAX_CONNECTS, &(cfg->max_connects));
 	return MOSQ_ERR_SUCCESS;
 }
 
